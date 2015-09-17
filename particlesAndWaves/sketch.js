@@ -37,6 +37,10 @@ var ampAnalyzer;
 var tapSound;
 var tapReverb;
 
+// Temp slider to control speed at which the balls move
+var tempSlider;
+var temp;
+
 // Preload ensures that all objects are fully loaded before setup is run
 // This ensures our audio files are available when we need them
 function preload() {
@@ -47,6 +51,9 @@ function preload() {
 
 function setup() {
   createCanvas(1280,720);
+  
+  tempSlider = createSlider(1,10,1);
+  tempSlider.position(1140,700);
   
   // Randomly generate a different number of balls each launch
   numberOfCirclesToGenerate = random(2,5);
@@ -82,15 +89,18 @@ function setup() {
 // the balls and waves
 function draw() {
   bkg.pulse();
+  temp = tempSlider.value();
   system.run()
 }
 
 // When the mouse is clicked, add balls and waves to the system, play the tap sound,
 // now filtered through reverb.
 function mouseClicked() {
-  system.addBalls();
-  system.addWaves();
-  tapSound.play();
+  if (mouseX < 1260 && mouseX > 20 && mouseY > 20 && mouseY < 700) {
+    system.addBalls();
+    // system.addWaves();
+    tapSound.play();
+  }
   
   // bkg.wave(mouseX,mouseY);
 }
@@ -109,7 +119,9 @@ function CustomBackground(r,g,b) {
 // TODO: I could accomplish this more cleanly with a sin() function, I think
 CustomBackground.prototype.pulse = function() {
   // Set background color to bkg object's RGB values
-  background(this.r,this.g,this.b);
+  fill(this.r,this.g,this.b);
+  rect(0,0,1280,720);
+  // background(this.r,this.g,this.b);
   
   // read the b value, and adjust the pulse direction accordingly.
   if (this.b === 0) {
@@ -160,7 +172,7 @@ Ball.prototype.display = function() {
 
 // Update method just updates position of the ball
 Ball.prototype.update = function() {
-  this.position = {x: this.position.x+this.velocity.x, y: this.position.y+this.velocity.y};
+  this.position = {x: this.position.x+this.velocity.x*temp, y: this.position.y+this.velocity.y*temp};
 }
 
 // Method to determine edge bouncing
@@ -183,9 +195,15 @@ Ball.prototype.annihilate = function(balls, thisBall) {
 
   // Iterate through all the balls on screen
   for (var i = 0; i < balls.length; i++) {
-    // If two are significantly close (within radii of each other), combine them and remove one from the array
-    if ((abs(this.position.x - balls[i].position.x) < (this.size/2)) && ((this.position.x - balls[i].position.x) !== 0) && (abs(this.position.y - balls[i].position.y) < (this.size/2)) && ((this.position.y - balls[i].position.y) !== 0)) {
+    // If two are significantly close (within radii of each other), 
+    // combine them and remove one from the array
+    if ((abs(this.position.x - balls[i].position.x) < (this.size/2)) 
+      && ((this.position.x - balls[i].position.x) !== 0) 
+      && (abs(this.position.y - balls[i].position.y) < (this.size/2)) 
+      && ((this.position.y - balls[i].position.y) !== 0)) {
+      
       this.size = this.size + balls[i].size;
+      system.addWaves(balls[i].position.x, balls[i].position.y);
       balls.splice(i,1);
     }
   }
@@ -242,10 +260,10 @@ System.prototype.addBalls = function() {
 }
 
 // Similarly, add waves at point of click
-System.prototype.addWaves = function() {
+System.prototype.addWaves = function(x,y) {
   for (var i = 0; i < 3; i++) {
     // New waves added to waves array with varying sizes
-    this.waves.push(new Wave(mouseX,mouseY, i*60, i*60));
+    this.waves.push(new Wave(x, y, i*60, i*60));
   }
 }
 
