@@ -36,7 +36,7 @@ function setup() {
   rect(0, 0, 488, 639);
 
   // set all relevant color vars
-  skinColor = color(216, 162, 162);
+  skinColor = color(216, 162, 160);
   pantsColor = color(17, 23, 37);
   bodyColor = color(126, 135, 169);
   banjoNeckColor = color(123, 110, 120);
