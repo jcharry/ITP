@@ -18,6 +18,8 @@
   interaction, and removal of objects.
 */
 
+//hi
+
 // TODO: Make the background an object that reacts to taps as well.
 
 // ERROR: getting this message: 154: Uncaught TypeError: Cannot read property 'display' of undefined
