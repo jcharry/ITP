@@ -100,16 +100,11 @@ function draw() {
 function mouseClicked() {
   if (mouseX < 1260 && mouseX > 20 && mouseY > 20 && mouseY < 700) {
     system.addBalls();
-    // system.addWaves();
     tapSound.play();
   }
-  
-  // bkg.wave(mouseX,mouseY);
 }
 
 // Custom background object
-// TODO: add a method to create a wave like effect when 
-// mouse is clicked
 function CustomBackground(r,g,b) {
   // properties for RGB, and a pulse direction.
   this.r = r;
