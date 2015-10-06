@@ -1,0 +1,22 @@
+* {
+	border: 1px dashed #0000ff;
+}
+
+h1 {
+	font-family: futura;
+	width: 1400;
+	height:15px;
+
+	/*text-align: center;*/
+}
+
+body {
+	padding: 0px;
+	margin: 0px;
+}
+
+canvas {
+
+	position: static;
+	/*vertical-align: top;*/
+}

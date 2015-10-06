@@ -199,22 +199,22 @@ function mouseReleased() {
 }
 
 // Pan planets around
-// function mouseDragged() {
-//   // Set dragging flag to true to tell mouseReleased() not to add music lines
-//   dragging = true;
+function mouseDragged() {
+  // Set dragging flag to true to tell mouseReleased() not to add music lines
+  dragging = true;
   
-//   if ((mouseX > 1289) && (mouseX < width) && (mouseY > 176) && (mouseY < 223)) {
-//   } else {
-//     var distTraveled = {x: -pwinMouseX + mouseX, y: -pwinMouseY + mouseY};
-//     distancePanned.x += distTraveled.x;
-//     distancePanned.y += distTraveled.y;
-//     translate(distTraveled.x, distTraveled.y);
+  if ((mouseX > 1289) && (mouseX < width) && (mouseY > 176) && (mouseY < 223)) {
+  } else {
+    var distTraveled = {x: -pwinMouseX + mouseX, y: -pwinMouseY + mouseY};
+    distancePanned.x += distTraveled.x;
+    distancePanned.y += distTraveled.y;
+    translate(distTraveled.x, distTraveled.y);
     
-//     // Keep track of center coords of solar system
-//     solarSystem.center.x = distancePanned.x;
-//     solarSystem.center.y = distancePanned.y;
-//   }
-// }
+    // Keep track of center coords of solar system
+    solarSystem.center.x = distancePanned.x;
+    solarSystem.center.y = distancePanned.y;
+  }
+}
 
 
 function reset() {

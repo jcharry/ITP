@@ -81,8 +81,8 @@ function setup() {
   isPlaying = true;
   zoomLevel = 1;
   
-  speedSlider = createSlider(0.1,10,1);
-  speedSlider.position(1300,190);
+  // speedSlider = createSlider(0.1,10,1);
+  // speedSlider.position(1300,190);
   // speedSlider.color(255,255,255);
   
   createPlanets();
@@ -100,7 +100,7 @@ function draw() {
   strokeWeight(1);
   // stroke(0,0,255);
   fill(47,70,176);
-  text("speed", 1350, 190);
+  // text("speed", 1350, 190);
   text("zoom", 1350, 90);
   image(zoomImg[0], 1350, 100, 30, 30);
   image(zoomImg[1], 1350, 130, 30, 30);
@@ -199,22 +199,22 @@ function mouseReleased() {
 }
 
 // Pan planets around
-// function mouseDragged() {
-//   // Set dragging flag to true to tell mouseReleased() not to add music lines
-//   dragging = true;
+function mouseDragged() {
+  // Set dragging flag to true to tell mouseReleased() not to add music lines
+  dragging = true;
   
-//   if ((mouseX > 1289) && (mouseX < width) && (mouseY > 176) && (mouseY < 223)) {
-//   } else {
-//     var distTraveled = {x: -pwinMouseX + mouseX, y: -pwinMouseY + mouseY};
-//     distancePanned.x += distTraveled.x;
-//     distancePanned.y += distTraveled.y;
-//     translate(distTraveled.x, distTraveled.y);
+  if ((mouseX > 1289) && (mouseX < width) && (mouseY > 176) && (mouseY < 223)) {
+  } else {
+    var distTraveled = {x: -pwinMouseX + mouseX, y: -pwinMouseY + mouseY};
+    distancePanned.x += distTraveled.x;
+    distancePanned.y += distTraveled.y;
+    translate(distTraveled.x, distTraveled.y);
     
-//     // Keep track of center coords of solar system
-//     solarSystem.center.x = distancePanned.x;
-//     solarSystem.center.y = distancePanned.y;
-//   }
-// }
+    // Keep track of center coords of solar system
+    solarSystem.center.x = distancePanned.x;
+    solarSystem.center.y = distancePanned.y;
+  }
+}
 
 
 function reset() {
@@ -281,7 +281,8 @@ Planet.prototype.update = function() {
     // Update theta by angular velocity (and scale based on slider value)
     // Check to see if animation is playing, if not, don't update theta value
     if (isPlaying) {
-      this.theta += this.velocity*speedSlider.value();
+      // this.theta += this.velocity*speedSlider.value();
+      this.theta += this.velocity;
     } else {
       this.theta += 0;
     }
@@ -379,10 +380,12 @@ Planet.prototype.checkForMusicLine = function() {
           noteToPlay.setVolume(0.6);
           break;
       }
-      noteToPlay.play();
+      if (!noteToPlay.isPlaying()) {
+        noteToPlay.play();
+      }
       
       // return to ensure that notes don't get played more than they should
-      return;
+      // return;
     }
   }
 }
