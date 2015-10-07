@@ -43,30 +43,31 @@ var speedSlider;
 var solarSystem;
 
 // Keep track of where the image is panned to
-var distancePanned;
+// var distancePanned;
 
 var isPlaying;
 var dragging;
 
-var aNote;
-var bNote;
-var cNote;
-var dNote;
-var eNote
-var fNote;
-var gNote;
+// var aNote;
+// var bNote;
+// var cNote;
+// var dNote;
+// var eNote
+// var fNote;
+// var gNote;
+
 var playPauseImg = [];
 
 var zoomImg = [];
 
 function preload() {
-  aNote = loadSound("assets/a.wav");
-  bNote = loadSound("assets/b.wav");
-  cNote = loadSound("assets/c.wav");
-  dNote = loadSound("assets/d.wav");
-  eNote = loadSound("assets/e.wav");
-  fNote = loadSound("assets/f.wav");
-  gNote = loadSound("assets/g.wav");
+  // aNote = loadSound("assets/a.wav");
+  // bNote = loadSound("assets/b.wav");
+  // cNote = loadSound("assets/c.wav");
+  // dNote = loadSound("assets/d.wav");
+  // eNote = loadSound("assets/e.wav");
+  // fNote = loadSound("assets/f.wav");
+  // gNote = loadSound("assets/g.wav");
   playPauseImg[0] = loadImage("assets/play.png");
   playPauseImg[1] = loadImage("assets/pause.png");
   zoomImg[0] = loadImage("assets/zoomIn.png");
@@ -78,7 +79,7 @@ function setup() {
   
   textFont("Futura");
   
-  distancePanned = {x: 0, y: 0};
+  // distancePanned = {x: 0, y: 0};
   
   isPlaying = true;
   zoomLevel = 1;
@@ -98,7 +99,7 @@ function draw() {
 
   // Using distancePanned, translate text in opposite direction to ensure it stays still
   push();
-  translate(-distancePanned.x, -distancePanned.y);
+  // translate(-distancePanned.x, -distancePanned.y);
   strokeWeight(1);
   // stroke(0,0,255);
   fill(47,70,176);
@@ -157,7 +158,7 @@ function mouseReleased() {
       // white space around buttons pressed - Don't draw line!!!
     } else {
       // didn't hit a button - add a music line
-      solarSystem.addMusicLine((mouseX - (width/2) - distancePanned.x), (mouseY - (height/2) - distancePanned.y));
+      // solarSystem.addMusicLine((mouseX - (width/2) - distancePanned.x), (mouseY - (height/2) - distancePanned.y));
     }
   }
   // reset dragging flag after mouse released
@@ -329,64 +330,64 @@ Planet.prototype.display = function() {
 
 // Method to check if ball is overlapping a line
 Planet.prototype.checkForMusicLine = function() {
-  for (var i = 0; i < solarSystem.musicLines.length; i++) {
-    if (this.theta - solarSystem.musicLines[i].theta < 0.005 && this.theta - solarSystem.musicLines[i].theta > -0.005) {
+  // for (var i = 0; i < solarSystem.musicLines.length; i++) {
+  //   if (this.theta - solarSystem.musicLines[i].theta < 0.005 && this.theta - solarSystem.musicLines[i].theta > -0.005) {
       
-      // get length of line, link to different note
-      var noteToPlay;
-      var musicLineLength = solarSystem.musicLines[i].length;
-      if (musicLineLength > 540) {
-        noteToPlay = fNote;
-      } else if (musicLineLength > 450) {
-        noteToPlay = eNote;
-      } else if (musicLineLength > 360) {
-        noteToPlay = gNote;
-      } else if (musicLineLength > 270) {
-        noteToPlay = cNote;
-      } else if (musicLineLength > 180) {
-        noteToPlay = dNote;
-      } else if (musicLineLength > 90) {
-        noteToPlay = aNote;
-      } else if (musicLineLength > 0) {
-        noteToPlay = bNote;
-      }
+  //     // get length of line, link to different note
+  //     // var noteToPlay;
+  //     // var musicLineLength = solarSystem.musicLines[i].length;
+  //     // if (musicLineLength > 540) {
+  //     //   noteToPlay = fNote;
+  //     // } else if (musicLineLength > 450) {
+  //     //   noteToPlay = eNote;
+  //     // } else if (musicLineLength > 360) {
+  //     //   noteToPlay = gNote;
+  //     // } else if (musicLineLength > 270) {
+  //     //   noteToPlay = cNote;
+  //     // } else if (musicLineLength > 180) {
+  //     //   noteToPlay = dNote;
+  //     // } else if (musicLineLength > 90) {
+  //     //   noteToPlay = aNote;
+  //     // } else if (musicLineLength > 0) {
+  //     //   noteToPlay = bNote;
+  //     // }
       
-      // Switch on name to amplify notes played by certain planets
-      switch (this.name) {
-        case "mercury": 
-          noteToPlay.setVolume(0.1);
-          break;
-        case "venus":
-          noteToPlay.setVolume(0.2);
-          break;
-        case "earth": 
-          noteToPlay.setVolume(0.3);
-          break;
-        case "mars":
-          noteToPlay.setVolume(0.5);
-          break;
-        case "jupiter":
-          noteToPlay.setVolume(0.4);
-          break;
-        case "saturn":
-          noteToPlay.setVolume(0.3);
-          break;
-        case "uranus":
-          noteToPlay.setVolume(0.5);
-          break;
-        case "neptune":
-          noteToPlay.setVolume(0.8);
-          break;
-        case "pluto":
-          noteToPlay.setVolume(0.6);
-          break;
-      }
-      noteToPlay.play();
+  //     // Switch on name to amplify notes played by certain planets
+  //     switch (this.name) {
+  //       case "mercury": 
+  //         noteToPlay.setVolume(0.1);
+  //         break;
+  //       case "venus":
+  //         noteToPlay.setVolume(0.2);
+  //         break;
+  //       case "earth": 
+  //         noteToPlay.setVolume(0.3);
+  //         break;
+  //       case "mars":
+  //         noteToPlay.setVolume(0.5);
+  //         break;
+  //       case "jupiter":
+  //         noteToPlay.setVolume(0.4);
+  //         break;
+  //       case "saturn":
+  //         noteToPlay.setVolume(0.3);
+  //         break;
+  //       case "uranus":
+  //         noteToPlay.setVolume(0.5);
+  //         break;
+  //       case "neptune":
+  //         noteToPlay.setVolume(0.8);
+  //         break;
+  //       case "pluto":
+  //         noteToPlay.setVolume(0.6);
+  //         break;
+  //     }
+  //     noteToPlay.play();
       
-      // return to ensure that notes don't get played more than they should
-      return;
-    }
-  }
+  //     // return to ensure that notes don't get played more than they should
+  //     return;
+  //   }
+  // }
 }
 
 function Sun(size) {
