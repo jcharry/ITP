@@ -8,12 +8,35 @@ var level;
 
 var distancePanned;
 
+var scene;
+var camera;
+
+// var renderer = new THREE.WebGLRenderer();
+// renderer.setSize( window.innerWidth, window.innerHeight );
+// document.body.appendChild( renderer.domElement );
+
+// var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+// var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+// var cube = new THREE.Mesh( geometry, material );
+// scene.add( cube );
+
+// camera.position.z = 5;
+
+// function render() {
+// 	requestAnimationFrame( render );
+// 	renderer.render( scene, camera );
+// }
+// render();
+
 function preload() {
   song = loadSound("assets/music.mp3");
 }
 
 function setup() {
   createCanvas(1000, 700, WEBGL);
+  
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 )
   
   song.play();
 
@@ -40,7 +63,7 @@ function setup() {
 
 //name, size, theta, eccentricity, semiMajorAxis, period
   planets = [mercury, venus, earth, mars, jupiter, saturn, uranus, neptune, pluto];
-  for (var i = 0; i < 100; i++) {
+  for (var i = 0; i < 300; i++) {
     planets.push(new Planet("name", random(1,30), map(random(0,100), 0,100,0,TWO_PI), 0, random(10, 250), 1));
   }
   
@@ -51,7 +74,7 @@ function setup() {
 
 function draw() {
 
-  background(100);
+  background(30);
   orbitControl();
   level = map(song.getLevel(), 0, 0.2, 1, 300);
   // print(level);
@@ -94,6 +117,7 @@ function Planet(name, size, theta, eccentricity, semiMajorAxis, period) {
   }
 
   this.display = function() {
+    // ambientLight(0, -100, 200);
     normalMaterial();
     push();
     // y value : cos(this.theta)*this.r
