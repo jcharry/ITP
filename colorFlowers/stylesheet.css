@@ -1,0 +1,31 @@
+/** {*/
+/*  border: 1px dashed red;*/
+/*}*/
+
+#cornerText {
+  float: right;
+  font-family: Gill Sans;
+  margin: 0px 20px 0px 0px;
+  font-size: 12pt;
+  clear: right;
+}
+
+#instructionText {
+  float: right;
+  font-family: Gill Sans;
+  margin: 5px 20px 5px 0px;
+  font-size: 12pt;
+}
+
+.button {
+  display: inline-block;
+  font-family: Gill Sans;
+  font-size: 10pt;
+  padding: 10px 10px 10px 10px;
+  margin: 10px 0px 10px 20px;
+  
+}
+
+canvas {
+  clear: both;
+}

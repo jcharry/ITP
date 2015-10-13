@@ -1,0 +1,33 @@
+ 
+/** {*/
+/*  border: 1px dashed orange;*/
+/*}*/
+ 
+
+.draggable {
+  /*display: inline-block;*/
+  width: 100px;
+  height: 100px;
+}
+
+#canvasContainer {
+  clear: left;
+  display: inline-block;
+}
+
+#colorContainer {
+  position: relative;
+  width: 100px;
+  height: 300px;
+  float: left;
+}
+
+#c {
+  border: 1px solid black;
+  /*display: inline-block;*/
+  /*float:right;*/
+}
+
+p {
+  font-family: Futura;
+}
